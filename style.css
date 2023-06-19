@@ -174,7 +174,7 @@ main {
 
 
   footer {
-    background-color: #1a1a1a;
+    background-color: #35244f;
     padding: 0.5rem;
     color: #fff;
     text-align: center;
@@ -294,25 +294,23 @@ main {
   position: relative;
 }
 
-.search-element-2 {
-  display: flex;
-  width: auto;
-  flex-direction: column;
-  justify-content: center;
-  align-items: stretch;
-  position: relative;
-}
+/*  */
 .search-btn{
   width:60vw;
 }
 
 .search-element-2{
+  font-size: 1rem;
   display: flex;
   width: auto;
   flex-direction: column;
+  margin: 3rem;
+  padding: 3rem 1.8rem;
+  border-radius: 0.6rem;
+  flex-direction: column;
   justify-content: center;
   align-items: stretch;
-  position: relative;
+  position: center;
   gap: 1rem;
 }
 .search-btn-2{
