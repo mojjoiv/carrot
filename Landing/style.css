@@ -34,14 +34,6 @@ main {
   padding: 3rem 1.8rem;
   margin: 2rem;
   overflow: auto;
-  /* border-radius: 0.6rem; */
-  
-  /* background: linear-gradient(
-    50deg,
-    rgba(255, 255, 255, 0.4) 12%,
-    rgba(255, 255, 255, 0.1) 77%
-  ); */
-  /* box-shadow: 0px 4px 24px 1px rgba(0, 0, 0, 0.28); */
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
 }
@@ -416,8 +408,6 @@ p,
 
 .msg {
   text-align: center;
-  top: 0;
-  width: 70px;
 }
 
 @media screen and (max-width: 550px) {
@@ -436,6 +426,79 @@ p,
   }
 }
 
+
+#movie-card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  justify-content: flex-start;
+  max-width: 1200px;
+  margin-top: 3.5rem;
+
+}
+
+.movie-card {
+  width: calc(25% - 20px);
+  height: 320px;
+  gap: 1.2rem;
+  width: auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  margin: 10px;
+  transition: transform 0.3s ease;
+  position: relative;
+  left: 0;
+  top: 0;
+  align-items: left;
+}
+
+.movie-details {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+  background-color: rgba(0, 0, 0, 0.7); /* Set the background color with transparency */
+  padding: 10px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  color: #fafafa; /* Set the text color to black */
+}
+
+.movie-card:hover .movie-details {
+  display: block;
+}
+
+.movie-card:hover {
+  transform: translateY(-5px);
+}
+
+.movie-card img {
+  width: 100%;
+  height: 250px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.movie-card h3 {
+  font-size: 20px;
+  margin: 0;
+}
+
+.movie-card p {
+  font-size: 14px;
+  color: #777;
+  margin-top: 5px;
+}
+
+.movie-card .genre {
+  font-size: 14px;
+  color: #333;
+  margin-top: 10px;
+}
 
 .clapperboard {
   width: 100px;
@@ -512,9 +575,29 @@ p,
     width: 100%;
 }
 
+ .movie-card {
+    flex-basis: calc(33.33% - 20px); 
+  }
+}
+
+
+
+@media screen and (max-width: 768px) {
+  .movie-card {
+    flex-basis: calc(50% - 20px); 
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .movie-card {
+    flex-basis: 100%;
+  }
+
 #result-grid {
   color: #fff;
   align-items: left;
   margin-top: 6rem;
 }
 }
+
+

@@ -1,22 +1,23 @@
+//* https://www.omdbapi.com/?s=game&page=1&apikey=fc1fef96
+//* http://www.omdbapi.com/?i=tt3896198&apikey=fc1fef96
+
 const movieSearchBox = document.getElementById("movie-name");
 const searchList = document.getElementById("search-list");
 const resultGrid = document.getElementById("result-grid");
 const searchBtn = document.getElementById("search-btn");
 
-const API_KEY = '23d93ae3'; // Replace with your actual API key
-
 //! load movies from API
 async function loadMovies(searchTerm) {
-  const URL = `https://www.omdbapi.com/?s=${searchTerm}&page=1&apikey=${API_KEY}`;
-  const res = await fetch(URL);
+  const URL = `https://www.omdbapi.com/?s=${searchTerm}&page=1&apikey=${key}`;
+  const res = await fetch(`${URL}`);
   const data = await res.json();
-  if (data.Response === "True") {
-    displayMovieList(data.Search);
-  }
+  // console.log(data.Search);
+  if (data.Response == "True") displayMovieList(data.Search);
 }
 
 function findMovies() {
   let searchTerm = movieSearchBox.value.trim();
+  // console.log(searchTerm);
   if (searchTerm.length > 0) {
     searchList.classList.remove("hide-search-list");
     loadMovies(searchTerm);
@@ -30,7 +31,7 @@ function displayMovieList(movies) {
   searchList.innerHTML = "";
   for (let idx = 0; idx < movies.length; idx++) {
     let movieListItem = document.createElement("div");
-    movieListItem.dataset.id = movies[idx].imdbID;
+    movieListItem.dataset.id = movies[idx].imdbID; // setting movie id in data-id
     movieListItem.classList.add("search-list-item");
     if (movies[idx].Poster != "N/A") {
       moviePoster = movies[idx].Poster;
@@ -39,30 +40,32 @@ function displayMovieList(movies) {
     }
 
     movieListItem.innerHTML = `
-      <div class="search-item-thumbnail">
+    <div class="search-item-thumbnail">
         <img src="${moviePoster}">
-      </div>
-      <div class="search-item-info">
+    </div>
+    <div class="search-item-info">
         <h3>${movies[idx].Title}</h3>
         <p>${movies[idx].Year}</p>
-      </div>
+    </div>
     `;
     searchList.appendChild(movieListItem);
   }
   loadMovieDetails();
 }
 
-//! function to fetch data from API - it is for the search list
+//! function to fetch data from api - it is for the search list
 function loadMovieDetails() {
   const searchListMovies = searchList.querySelectorAll(".search-list-item");
   searchListMovies.forEach((movie) => {
     movie.addEventListener("click", async () => {
+      // console.log(movie.dataset.id);
       searchList.classList.add("hide-search-list");
       movieSearchBox.value = "";
       const result = await fetch(
-        `https://www.omdbapi.com/?i=${movie.dataset.id}&apikey=${API_KEY}`
+        `https://www.omdbapi.com/?i=${movie.dataset.id}&apikey=${key}`
       );
       const movieDetails = await result.json();
+      // console.log(movieDetails);
       displayMovieDetails(movieDetails);
     });
   });
@@ -71,8 +74,10 @@ function loadMovieDetails() {
 //! show movie details after selecting the movie from the search list
 function displayMovieDetails(details) {
   resultGrid.innerHTML = `
-    <div class="info">
-      <img src=${details.Poster != "N/A" ? details.Poster : "images/image_not_found.png"} class="poster">
+  <div class="info">
+      <img src=${
+        details.Poster != "N/A" ? details.Poster : "images/image_not_found.png"
+      } class="poster">
       <div>
         <h2>${details.Title}</h2>
         <div class="rating">
@@ -95,55 +100,62 @@ function displayMovieDetails(details) {
       <p>${details.Actors}</p>
       <h3>Awards:</h3>
       <p>${details.Awards}</p>
-    </div>
-  `;
+  </div>
+`;
 }
 
-//! function to fetch data from API - it is for 'Search' button and 'Enter' key
+//! function to fetch data from api - it is for 'Search' button and 'Enter' key
 let getMovie = () => {
   let movieName = movieSearchBox.value;
-  let url = `https://www.omdbapi.com/?t=${movieName}&apikey=${API_KEY}`;
+  let url = `https://www.omdbapi.com/?t=${movieName}&apikey=${key}`;
 
+  // input field is empty
   if (movieName.length <= 0) {
-    resultGrid.innerHTML = `<h3 class="msg">Please enter a movie name</h3>`;
+    // resultGrid.innerHTML = `<h3 class="msg">Please enter a movie name</h3>`;
   } else {
     fetch(url)
       .then((res) => res.json())
       .then((data) => {
+        // if movie exist in database
         if (data.Response == "True") {
           resultGrid.innerHTML = `
-            <div class="info">
-              <img src=${data.Poster != "N/A" ? data.Poster : "images/image_not_found.png"} class="poster">
-              <div>
-                <h2>${data.Title}</h2>
-                <div class="rating">
-                  <img src="images/star-icon.svg">
-                  <h4>${data.imdbRating}</h4>
-                  <span>(${data.imdbVotes})</span>
-                </div>
-                <div class="details">
-                  <span>${data.Rated}</span>
-                  <span>${data.Year}</span>
-                  <span>${data.Runtime}</span>
-                </div>
-                <div class="genre">
-                  <div>${data.Genre.split(",").join("</div><div>")}</div>
-                </div>
+          <div class="info">
+          <img src=${
+            data.Poster != "N/A" ? data.Poster : "images/image_not_found.png"
+          } class="poster">
+            <div>
+              <h2>${data.Title}</h2>
+              <div class="rating">
+                <img src="images/star-icon.svg">
+                <h4>${data.imdbRating}</h4>
+                <span>(${data.imdbVotes})</span>
               </div>
-              <h3>Plot:</h3>
-              <p>${data.Plot}</p>
-              <h3>Cast:</h3>
-              <p>${data.Actors}</p>
-              <h3>Awards:</h3>
-              <p>${data.Awards}</p>
+              <div class="details">
+                <span>${data.Rated}</span>
+                <span>${data.Year}</span>
+                <span>${data.Runtime}</span>
+              </div>
+              <div class="genre">
+                <div>${data.Genre.split(",").join("</div><div>")}</div>
+              </div>
             </div>
-          `;
-        } else {
+            <h3>Plot:</h3>
+            <p>${data.Plot}</p>
+            <h3>Cast:</h3>
+            <p>${data.Actors}</p>
+            <h3>Awards:</h3>
+            <p>${data.Awards}</p>
+          </div>
+        `;
+        }
+        // if movie doesn't exist in database
+        else {
           resultGrid.innerHTML = `<h3 class="msg">${data.Error}</h3>`;
         }
       })
+      // if error occurs
       .catch(() => {
-        resultGrid.innerHTML = `<h3 class="msg">Error Occurred</h3>`;
+        resultGrid.innerHTML = `<h3 class="msg">Error Occured</h3>`;
       });
   }
 };
@@ -167,14 +179,4 @@ window.addEventListener("click", (e) => {
   if (e.target.className != "form-control") {
     searchList.classList.add("hide-search-list");
   }
-});
-
-document.addEventListener("DOMContentLoaded", function() {
-  const glasses = document.querySelector(".glasses");
-
-  function showAnimation() {
-    glasses.style.visibility = "visible";
-  }
-
-  showAnimation();
 });
