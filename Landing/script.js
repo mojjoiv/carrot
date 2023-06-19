@@ -37,10 +37,10 @@ function createMovieCard(movie) {
 
   const movieTitle = document.createElement('h3');
   movieTitle.classList.add('movie-title');
-  movieTitle.textContent = movie.Title;
+  // movieTitle.textContent = movie.Title;
 
   movieCard.appendChild(movieImage);
-  movieCard.appendChild(movieTitle);
+  // movieCard.appendChild(movieTitle);
 
   movieCard.addEventListener('click', () => {
     window.location.href = `single-movie.html?movieId=${movie.imdbID}`;

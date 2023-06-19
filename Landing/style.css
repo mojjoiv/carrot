@@ -434,24 +434,36 @@ p,
   justify-content: flex-start;
   max-width: 1200px;
   margin-top: 3.5rem;
+  /* gap: 0.6rem; */
 
 }
 
 .movie-card {
   width: calc(25% - 20px);
+  display: grid;
   height: 320px;
   gap: 1.2rem;
-  width: auto;
+  /* gap: 0.6rem; */
   padding: 20px;
-  background-color: #fff;
+  /* margin-bottom: 10px; */
+  /* background-color: #fff; */
   border-radius: 10px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); */
+  justify-content: space-around;
   margin: 10px;
   transition: transform 0.3s ease;
   position: relative;
   left: 0;
   top: 0;
   align-items: left;
+  background-image: radial-gradient(
+    ellipse at 10% 90%,
+    #3c2d83 0%,
+    transparent 55%
+  ),
+  radial-gradient(ellipse at 90% 90%, #c33c65 0%, transparent 55%),
+  radial-gradient(ellipse at 90% 10%, #4a74dc 0%, transparent 55%),
+  radial-gradient(ellipse at 10% 10%, #35244f 0%, transparent 55%);
 }
 
 .movie-details {
@@ -477,7 +489,7 @@ p,
 }
 
 .movie-card img {
-  width: 100%;
+  width: auto;
   height: 250px;
   border-radius: 5px;
   margin-bottom: 10px;
