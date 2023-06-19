@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="author" content="Ecem Gokdogan" />
+    <meta name="keywords" content="movie guide app, imdb, movie, imdb, wednesday, html css, javascript, ecem gokdogan, ecemgo, FrontendMentor.io, ecem gokdogan frontend, frontend developer, github"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="./images/tv.png">
+    <title>Movie Guide App</title>
+</head>
+<body>
+    <header>
+      <nav class="navbar">
+        <a href="#" class="navbar-brand">Movie Guide App</a>iol
+        <div class="search-container">
+            <div class="search-element">
+                <input type="text" class="form-control" id="movie-name" placeholder="Type movie name here.." onkeyup="findMovies()" onclick="findMovies()">
+                
+                <div class="search-list" id="search-list">
+                </div>
+            </div>
+            <button id="search-btn">Search</button>
+        </div>  
+        <div class="navbar-links">
+          <ul>
+            <li><a href="#" class="active-link">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+        <section class="bghome">
+
+       
+        <div id="result-grid"></div>
+    </section>
+    </main>
+
+    <footer>
+      <div class="footer-brand">
+        <a href="#" class="footer-brand">Movie Guide App</a>
+      </div>
+      <div class="footer-links">
+        <ul>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+        </ul>
+      </div>
+    </footer>
+
+    <script src="key.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
