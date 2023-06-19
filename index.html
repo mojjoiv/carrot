@@ -16,7 +16,11 @@
           <a href="#" class="navbar-brand">Movie Guide App</a>
           <div class="search-container">
               <div class="search-element">
-                  <input type="text" class="form-control" id="movie-name" placeholder="Type movie name here.." onkeyup="findMovies()" onclick="findMovies()">
+                  <input type="text" class="form-control"
+                         id="movie-name" 
+                         placeholder="Type movie name here.." 
+                         onkeyup="findMovies()" 
+                         onclick="findMovies()">
                   
                   <div class="search-list" id="search-list">
                   </div>
@@ -25,16 +29,34 @@
           </div>  
           <div class="navbar-links">
             <ul>
-              <li><a href="#" class="active-link">Home</a></li>
-              <li><a href="#">About</a></li>
+              <li><a href="./Landing/home.html" class="active-link">Home</a></li>
+              <li><a href="./index.html">search</a></li>
               <li><a href="#">Contact</a></li>
             </ul>
           </div>
         </nav>
       </header>
   
-    <main>
-       
+      <main>
+        <div class="search-container">
+            <div class="search-element-2">
+                <input type="text" class="form-control" id="movie-name" placeholder="Type movie name here.." onkeyup="findMovies()" onclick="findMovies()">
+                
+                <div class="search-list" id="search-list">
+                    <!-- list here -->
+                    <!-- <div class = "search-list-item">
+                        <div class = "search-item-thumbnail">
+                            <img src = "medium-cover.jpg">
+                        </div>
+                        <div class = "search-item-info">
+                            <h3>Guardians of the Galaxy Vol. 2</h3>
+                            <p>2017</p>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+            <button id="search-btn">Search</button>
+        </div>  
 
         <div id="result-grid"></div>
     </main>
