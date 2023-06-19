@@ -484,11 +484,11 @@ p,
 
 .msg {
   text-align: center;
-  align-items: center;
+  /* align-items: center;
   display: flex;
   top: 0;
   width: 70px;
-  justify-content: center;
+  justify-content: center; */
 }
 
 @media screen and (max-width: 550px) {

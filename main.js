@@ -111,7 +111,7 @@ let getMovie = () => {
 
   // input field is empty
   if (movieName.length <= 0) {
-    resultGrid.innerHTML;
+    resultGrid.innerHTML= `<h3 class="msg">enter a movie name to search</h3>`;;
   } else {
     fetch(url)
       .then((res) => res.json())
